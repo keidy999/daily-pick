@@ -86,6 +86,7 @@ body {
 }
 .result-for .rf-sub  { font-weight: 500; display: block; }
 .result-for .rf-main { font-weight: 500; font-size: 15px; display: block; }
+.result-for .rf-name { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ── THE CARD ── */
 .card {
@@ -95,15 +96,14 @@ body {
   position: relative;
   box-shadow: 0 16px 48px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.08);
   transform: translateZ(0);
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  will-change: transform;
 }
 
 /* 블러 배경 — 커버 이미지를 쭉 펴서 블러 */
 .card-blur {
-  position: absolute; inset: 0;
+  position: absolute; inset: -10%;
   background-size: cover; background-position: center;
   filter: blur(36px) saturate(1.6) brightness(1.05);
-  transform: scale(1.25);
   opacity: .55;
   transition: background-image .4s;
 }
@@ -185,16 +185,15 @@ body {
 .spotify-btn {
   display: inline-flex; align-items: center; justify-content: center;
   width: 42px; height: 42px;
-  background: rgba(255,255,255,0.28);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.32);
+  border: 1px solid rgba(255,255,255,0.5);
   border-radius: 50%; color: #fff;
   cursor: pointer; text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
   transition: transform .15s, background .15s;
   flex-shrink: 0;
 }
-.spotify-btn:hover { transform: scale(1.08); background: rgba(255,255,255,0.42); }
+.spotify-btn:hover { transform: scale(1.08); background: rgba(255,255,255,0.46); }
 
 /* ──────────────────────────────── UTILS ─── */
 @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
@@ -399,7 +398,7 @@ function renderResult() {
   const dateStr = `${d.getMonth()+1}월 ${d.getDate()}일 ${DAYS[d.getDay()]}요일`;
   const josa = eul(nickname);
   document.getElementById('resultFor').innerHTML =
-    `<span class="rf-sub">${nickname}${josa} 위한</span>
+    `<span class="rf-sub"><span class="rf-name">${nickname}</span>${josa} 위한</span>
      <span class="rf-main">${dateStr} 추천곡</span>`;
 
   // 아티스트 / 곡명
