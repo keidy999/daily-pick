@@ -101,9 +101,10 @@ body {
 
 /* 블러 배경 — 커버 이미지를 쭉 펴서 블러 */
 .card-blur {
-  position: absolute; inset: -10%;
+  position: absolute; inset: 0;
   background-size: cover; background-position: center;
   filter: blur(36px) saturate(1.6) brightness(1.05);
+  transform: scale(1.25);
   opacity: .55;
   transition: background-image .4s;
 }
