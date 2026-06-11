@@ -94,6 +94,8 @@ body {
   overflow: hidden;
   position: relative;
   box-shadow: 0 16px 48px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.08);
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 /* 블러 배경 — 커버 이미지를 쭉 펴서 블러 */
@@ -316,8 +318,6 @@ let songs = [], songsReady = false, nickname = '', pendingResult = false;
 const IS_ADMIN = new URLSearchParams(location.search).has('admin');
 if (IS_ADMIN) document.getElementById('gearBtn').classList.add('visible');
 
-const saved = localStorage.getItem('sr_nick');
-if (saved) document.getElementById('nicknameInput').value = saved;
 
 fetchSheet();
 
@@ -378,7 +378,6 @@ function goResult() {
     return;
   }
   nickname = val;
-  localStorage.setItem('sr_nick', val);
 
   if (!songsReady) {
     document.getElementById('step1').innerHTML =
