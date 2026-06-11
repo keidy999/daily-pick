@@ -170,14 +170,17 @@ body {
 .lyrics-block {
   width: 100%; display: flex; flex-direction: column; gap: 2px;
   margin-bottom: 16px;
+  transform: translateZ(0);
 }
 .lyric-line {
   font-size: 20px; font-weight: 700; line-height: 1.55;
   color: var(--text);
-  opacity: 0; transform: translateY(5px);
+  opacity: 0; transform: translate3d(0, 5px, 0);
   transition: opacity .4s ease, transform .4s ease;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
-.lyric-line.visible { opacity: 1; transform: translateY(0); }
+.lyric-line.visible { opacity: 1; transform: translate3d(0, 0, 0); }
 
 /* Spotify */
 .spotify-row {
